@@ -1,0 +1,532 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Distillation Press</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap">
+
+<style>
+  /* ── Design tokens ──────────────────────────────────────────
+     Layout: stacked full-width sections, max-width container, left-aligned
+     Color: paper ground / deep ink / cool teal accent / warm mid
+     Type: Cormorant Garamond display · Jost body
+  ─────────────────────────────────────────────────────────── */
+  :root {
+    --bg:        #f5f1eb;
+    --bg-alt:    #ede9e2;
+    --ink:       #1b1b1b;
+    --mid:       #6b6560;
+    --rule:      #d4cfc8;
+    --accent:    #2b5b6e;
+    --accent-lt: #d6e8ee;
+    --paper:     #f5f1eb;
+    color-scheme: light;
+
+    --f-display: 'Cormorant Garamond', Georgia, serif;
+    --f-body:    'Jost', system-ui, sans-serif;
+    --max-w:     1080px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:        #141414;
+      --bg-alt:    #1d1d1d;
+      --ink:       #ede9e2;
+      --mid:       #9a9590;
+      --rule:      #2e2e2e;
+      --accent:    #5a9fb8;
+      --accent-lt: #1a3340;
+      --paper:     #1b1b1b;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:        #141414;
+    --bg-alt:    #1d1d1d;
+    --ink:       #ede9e2;
+    --mid:       #9a9590;
+    --rule:      #2e2e2e;
+    --accent:    #5a9fb8;
+    --accent-lt: #1a3340;
+    --paper:     #1b1b1b;
+    color-scheme: dark;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.65;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 0;
+  }
+
+  .inner {
+    max-width: var(--max-w);
+    margin-inline: auto;
+  }
+
+  /* ── Nav ──────────────────────────────────────────────────── */
+  nav {
+    padding-block: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: var(--max-w);
+    margin-inline: auto;
+  }
+  .nav-logo {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--mid);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── Hero ─────────────────────────────────────────────────── */
+  .hero {
+    padding-block: 6rem 5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-inner {
+    max-width: var(--max-w);
+    margin-inline: auto;
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: var(--f-display);
+    font-weight: 300;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.07;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    max-width: 14ch;
+    text-wrap: balance;
+    margin-bottom: 2rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 300;
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--mid);
+    max-width: 54ch;
+    line-height: 1.7;
+  }
+
+  /* ── Section chrome ───────────────────────────────────────── */
+  section { padding-block: 5rem; }
+  section + section { border-top: 1px solid var(--rule); }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── Books grid ───────────────────────────────────────────── */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2.5rem 2rem;
+  }
+
+  .book-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .book-cover-link {
+    display: block;
+    text-decoration: none;
+    position: relative;
+  }
+  .book-cover-link:focus-visible .book-cover { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .book-cover {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    background: var(--accent-lt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    transition: opacity 0.25s;
+  }
+  .book-cover-link:hover .book-cover { opacity: 0.88; }
+
+  /* Placeholder cover art — drawn with CSS */
+  .cover-art {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 1.4rem 1.2rem;
+    position: relative;
+  }
+  .cover-art-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 60%, var(--ink)) 100%);
+  }
+  .cover-art-rule {
+    position: absolute;
+    top: 2rem;
+    left: 1.2rem;
+    right: 1.2rem;
+    height: 1px;
+    background: rgba(255,255,255,0.25);
+  }
+  .cover-art-rule-2 {
+    position: absolute;
+    top: 2.3rem;
+    left: 1.2rem;
+    right: 1.2rem;
+    height: 3px;
+    background: rgba(255,255,255,0.12);
+  }
+  .cover-art-title {
+    position: relative;
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: 1.15rem;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 0.4rem;
+    text-wrap: balance;
+  }
+  .cover-art-author {
+    position: relative;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.65);
+    font-family: var(--f-body);
+    font-weight: 400;
+  }
+
+  .book-meta {
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+  }
+  .book-title {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: 1.05rem;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .book-author {
+    font-size: 0.78rem;
+    color: var(--mid);
+    letter-spacing: 0.03em;
+  }
+  .book-desc {
+    font-size: 0.82rem;
+    color: var(--mid);
+    line-height: 1.6;
+    margin-top: 0.5rem;
+    flex: 1;
+  }
+  .book-cta {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+    transition: opacity 0.2s;
+    align-self: flex-start;
+  }
+  .book-cta:hover { opacity: 0.7; }
+
+  /* ── About ────────────────────────────────────────────────── */
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  @media (max-width: 640px) {
+    .about-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  .about-layout h2 {
+    font-family: var(--f-display);
+    font-weight: 300;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.15;
+    color: var(--ink);
+    text-wrap: balance;
+    margin-bottom: 1.5rem;
+  }
+  .about-layout h2 em {
+    font-style: italic;
+  }
+
+  .about-body p {
+    font-size: 0.95rem;
+    color: var(--mid);
+    line-height: 1.8;
+    max-width: 52ch;
+  }
+  .about-body p + p { margin-top: 1em; }
+
+  .mission-block {
+    border-left: 2px solid var(--accent);
+    padding-left: 1.5rem;
+  }
+  .mission-block p {
+    font-family: var(--f-display);
+    font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.6;
+    max-width: 44ch;
+  }
+
+  /* ── Methods strip ────────────────────────────────────────── */
+  .methods-section {
+    background: var(--bg-alt);
+    margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+    padding-inline: max(16px, env(safe-area-inset-left, 0px));
+  }
+  .methods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2.5rem 3rem;
+  }
+  .method-item h3 {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .method-item p {
+    font-size: 0.82rem;
+    color: var(--mid);
+    line-height: 1.7;
+  }
+
+  /* ── Footer ───────────────────────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-block: 2.5rem;
+  }
+  .footer-inner {
+    max-width: var(--max-w);
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-name {
+    font-family: var(--f-display);
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+  .footer-copy {
+    font-size: 0.75rem;
+    color: var(--mid);
+  }
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .footer-links a {
+    font-size: 0.75rem;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--accent); }
+
+  /* ── Responsive tweaks ────────────────────────────────────── */
+  @media (max-width: 520px) {
+    .nav-links { display: none; }
+    .hero { padding-block: 3.5rem 3rem; }
+    section { padding-block: 3.5rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; }
+  }
+</style>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Distillation Press</a>
+    <ul class="nav-links">
+      <li><a href="#books">Books</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#methods">Methods</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Vancouver, BC — Independent Publishing</p>
+    <h1>Writing that earns its <em>existence.</em></h1>
+    <p class="hero-sub">Distillation Press publishes work that has been tested by time, revision, and honest scrutiny. Small list, deep attention, no filler.</p>
+  </div>
+</header>
+
+<!-- Books -->
+<section id="books">
+  <div class="inner">
+    <p class="section-label">Published Works</p>
+    <div class="books-grid">
+
+      <!-- Book 1: Behind The Curtain -->
+      <article class="book-card">
+        <a class="book-cover-link" href="#" target="_blank" rel="noopener" aria-label="Order Behind The Curtain — opens in print-on-demand store">
+          <div class="book-cover">
+            <div class="cover-art">
+              <div class="cover-art-bg"></div>
+              <div class="cover-art-rule"></div>
+              <div class="cover-art-rule-2"></div>
+              <div class="cover-art-title">Behind The Curtain</div>
+              <div class="cover-art-author">Distillation Press</div>
+            </div>
+          </div>
+        </a>
+        <div class="book-meta">
+          <div class="book-title">Behind The Curtain</div>
+          <div class="book-author">Distillation Press, 2024</div>
+          <p class="book-desc">A frank look at the machinery behind the scenes — the decisions, the doubts, and the discipline that go into making something worth keeping.</p>
+          <a class="book-cta" href="#" target="_blank" rel="noopener">Order a copy</a>
+        </div>
+      </article>
+
+      <!-- Placeholder: upcoming title -->
+      <article class="book-card">
+        <div class="book-cover" style="opacity: 0.45;">
+          <div class="cover-art">
+            <div class="cover-art-bg" style="background: linear-gradient(160deg, #4a4a4a 0%, #1b1b1b 100%);"></div>
+            <div class="cover-art-rule"></div>
+            <div class="cover-art-title">Forthcoming</div>
+            <div class="cover-art-author">Title TBA</div>
+          </div>
+        </div>
+        <div class="book-meta">
+          <div class="book-title" style="color: var(--mid);">Coming Soon</div>
+          <div class="book-author">Next title in progress</div>
+          <p class="book-desc">The next Distillation Press title is in development. Sign up to hear when it arrives.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- About / Mission -->
+<section id="about">
+  <div class="inner">
+    <p class="section-label">The Press</p>
+    <div class="about-layout">
+      <div>
+        <h2>An imprint built on <em>conviction,</em> not volume.</h2>
+        <div class="about-body">
+          <p>Distillation Press is an independent publishing imprint based in Vancouver, British Columbia. We publish a small number of titles each year — works chosen because they have something genuine to say and the craft to say it well.</p>
+          <p>We are not a vanity press and we are not a volume play. Every title on our list exists because it passed a simple test: would the world be worse without it?</p>
+          <p>The writers we work with come from different backgrounds, but they share a willingness to revise, to be honest, and to take the work seriously on its own terms.</p>
+        </div>
+      </div>
+      <div class="mission-block">
+        <p>"To publish work that has been genuinely reckoned with — by the writer, by careful readers, and by time — and to make it available to anyone who needs it."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Methods -->
+<section id="methods" class="methods-section">
+  <div class="inner">
+    <p class="section-label">How We Work</p>
+    <div class="methods-grid">
+      <div class="method-item">
+        <h3>Small by design</h3>
+        <p>A short list means every title gets full attention. We do not publish to fill a catalog. We publish when something is ready.</p>
+      </div>
+      <div class="method-item">
+        <h3>Accessible formats</h3>
+        <p>Every title is made available in formats that work for the full range of readers — print, digital, and where possible, audio and accessible editions.</p>
+      </div>
+      <div class="method-item">
+        <h3>Print on demand</h3>
+        <p>We use print-on-demand to keep books permanently in print without overproduction. Copies exist when they are needed, not as warehouse risk.</p>
+      </div>
+      <div class="method-item">
+        <h3>Writer-first terms</h3>
+        <p>Writers retain meaningful control over their work. Our agreements are plain, our royalties are fair, and we do not lock authors into arrangements that no longer serve them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-name">Distillation Press</span>
+    <ul class="footer-links">
+      <li><a href="#books">Books</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="mailto:distillationpress@gmail.com">Contact</a></li>
+    </ul>
+    <span class="footer-copy">Vancouver, BC &nbsp;·&nbsp; Independent Publishing</span>
+  </div>
+</footer>
+
+</body></html>
