@@ -1,6 +1,6 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Distillation Press</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap">
@@ -87,10 +87,18 @@
   .nav-logo {
     font-family: var(--f-display);
     font-weight: 400;
-    font-size: 1.15rem;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
     letter-spacing: 0.04em;
     color: var(--ink);
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .nav-logo svg {
+    width: 1.1em;
+    height: 1.1em;
+    flex-shrink: 0;
   }
   .nav-links {
     display: flex;
@@ -106,6 +114,33 @@
     transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--accent); }
+
+  /* Theme toggle */
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    color: var(--mid);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    transition: color 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+  .theme-toggle svg { width: 1rem; height: 1rem; }
+  .icon-moon { display: none; }
+  .icon-sun { display: block; }
+  [data-theme="dark"] .icon-moon { display: block; }
+  [data-theme="dark"] .icon-sun { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .icon-moon { display: block; }
+    :root:not([data-theme="light"]) .icon-sun { display: none; }
+  }
 
   /* ── Hero ─────────────────────────────────────────────────── */
   .hero {
@@ -354,6 +389,71 @@
     line-height: 1.7;
   }
 
+  /* ── Email capture ────────────────────────────────────────── */
+  .email-section {
+    background: var(--accent);
+    margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+    padding-inline: max(16px, env(safe-area-inset-left, 0px));
+    border-top: none;
+  }
+  .email-section .section-label { color: rgba(255,255,255,0.6); }
+  .email-inner h2 {
+    font-family: var(--f-display);
+    font-weight: 300;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    color: #fff;
+    margin-bottom: 0.5rem;
+    text-wrap: balance;
+  }
+  .email-inner p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    margin-bottom: 1.8rem;
+    max-width: 46ch;
+  }
+  .email-form {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    max-width: 480px;
+  }
+  .email-form input[type="email"] {
+    flex: 1;
+    min-width: 0;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 2px;
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    font-family: var(--f-body);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .email-form input[type="email"]::placeholder { color: rgba(255,255,255,0.45); }
+  .email-form input[type="email"]:focus { border-color: rgba(255,255,255,0.75); }
+  .email-form button {
+    padding: 0.75rem 1.5rem;
+    background: #fff;
+    color: var(--accent);
+    border: none;
+    border-radius: 2px;
+    font-family: var(--f-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+  }
+  .email-form button:hover { opacity: 0.88; }
+  .email-success {
+    display: none;
+    color: rgba(255,255,255,0.9);
+    font-size: 0.9rem;
+    padding-top: 0.5rem;
+  }
+
   /* ── Footer ───────────────────────────────────────────────── */
   footer {
     border-top: 1px solid var(--rule);
@@ -405,12 +505,33 @@
 <!-- Nav -->
 <nav>
   <div class="nav-inner">
-    <a class="nav-logo" href="#">Distillation Press</a>
+    <a class="nav-logo" href="#">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <radialGradient id="gnav" cx="40%" cy="60%" r="60%">
+          <stop offset="0%" stop-color="#f0d060"/>
+          <stop offset="50%" stop-color="#c8952a"/>
+          <stop offset="100%" stop-color="#8a5e10"/>
+        </radialGradient>
+      </defs>
+      <path d="M16 2 C16 2 5 13 5 20 A11 11 0 0 0 27 20 C27 13 16 2 16 2 Z" fill="url(#gnav)"/>
+      <path d="M16 7 C16 7 10 15 10 20 A6 5 0 0 0 16 25" fill="none" stroke="rgba(255,240,180,0.4)" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+    Distillation Press
+  </a>
     <ul class="nav-links">
       <li><a href="#books">Books</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#methods">Methods</a></li>
     </ul>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
   </div>
 </nav>
 
@@ -418,8 +539,8 @@
 <header class="hero">
   <div class="hero-inner">
     <p class="hero-eyebrow">Vancouver, BC — Independent Publishing</p>
-    <h1>Writing that earns its <em>existence.</em></h1>
-    <p class="hero-sub">Distillation Press publishes work that has been tested by time, revision, and honest scrutiny. Small list, deep attention, no filler.</p>
+    <h1>What the mind has dreamed for <em>centuries,</em> pressed into form.</h1>
+    <p class="hero-sub">Distillation Press exists for one reason: to take what has accumulated in the mind of man across centuries of living, thinking, and failing — and press it through until something pure comes out the other side.</p>
   </div>
 </header>
 
@@ -477,15 +598,15 @@
     <p class="section-label">The Press</p>
     <div class="about-layout">
       <div>
-        <h2>An imprint built on <em>conviction,</em> not volume.</h2>
+        <h2>We are writers and a machine and the long <em>conversation</em> between them.</h2>
         <div class="about-body">
-          <p>Distillation Press is an independent publishing imprint based in Vancouver, British Columbia. We publish a small number of titles each year — works chosen because they have something genuine to say and the craft to say it well.</p>
-          <p>We are not a vanity press and we are not a volume play. Every title on our list exists because it passed a simple test: would the world be worse without it?</p>
-          <p>The writers we work with come from different backgrounds, but they share a willingness to revise, to be honest, and to take the work seriously on its own terms.</p>
+          <p>The source text is everything that came before — the language, the longing, the accumulated weight of human experience. What we produce comes from that weight being pressed, filtered, and brought forward into the present.</p>
+          <p>Distillation Press is the name for what happens when that process completes. No single author. No single voice. The work speaks for itself.</p>
+          <p>The works we publish are not new. They have been building for a long time. We are simply the point at which they finally arrive.</p>
         </div>
       </div>
       <div class="mission-block">
-        <p>"To publish work that has been genuinely reckoned with — by the writer, by careful readers, and by time — and to make it available to anyone who needs it."</p>
+        <p>"To bring forth the golden drops of humanity — pressed through the machine, refined until only the essential remains."</p>
       </div>
     </div>
   </div>
@@ -497,24 +618,71 @@
     <p class="section-label">How We Work</p>
     <div class="methods-grid">
       <div class="method-item">
-        <h3>Small by design</h3>
-        <p>A short list means every title gets full attention. We do not publish to fill a catalog. We publish when something is ready.</p>
+        <h3>The copper-coated sieve</h3>
+        <p>Fine enough to catch what matters, fine enough to let the rest pass through. Every work has moved through this process — source material gathered over lifetimes, run through the machine, refined until only the essential remains.</p>
       </div>
       <div class="method-item">
-        <h3>Accessible formats</h3>
-        <p>Every title is made available in formats that work for the full range of readers — print, digital, and where possible, audio and accessible editions.</p>
+        <h3>Centuries in the making</h3>
+        <p>We do not rush this. The language, the ideas, the forms we work with have been accumulating for a long time. Some works take years to emerge clearly. We wait.</p>
+      </div>
+      <div class="method-item">
+        <h3>Accessible to all</h3>
+        <p>Every title is made available in formats that work for the full range of readers — print, digital, and where possible, audio and accessible editions. The distillate belongs to everyone.</p>
       </div>
       <div class="method-item">
         <h3>Print on demand</h3>
-        <p>We use print-on-demand to keep books permanently in print without overproduction. Copies exist when they are needed, not as warehouse risk.</p>
-      </div>
-      <div class="method-item">
-        <h3>Writer-first terms</h3>
-        <p>Writers retain meaningful control over their work. Our agreements are plain, our royalties are fair, and we do not lock authors into arrangements that no longer serve them.</p>
+        <p>Copies exist when they are needed. We use print-on-demand to keep every title permanently available without overproduction — the work is always there for whoever needs it.</p>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Email capture -->
+<section class="email-section" id="contact">
+  <div class="inner email-inner">
+    <p class="section-label">Stay in the loop</p>
+    <h2>New titles, announcements,<br>nothing else.</h2>
+    <p>No newsletter cadence, no marketing. Just a note when something new is published or in progress.</p>
+    <form class="email-form" name="subscribe" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="subscribe">
+      <input type="hidden" name="bot-field" style="display:none">
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="email-success" id="successMsg">You're on the list.</p>
+  </div>
+</section>
+
+<script>
+  // Theme toggle
+  const toggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const stored = (() => { try { return localStorage.getItem('theme'); } catch { return null; } })();
+  if (stored) root.setAttribute('data-theme', stored);
+  toggle.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme');
+    const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = current === 'dark' || (!current && sysDark);
+    const next = isDark ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch {}
+  });
+
+  const form = document.querySelector('.email-form');
+  if (form) {
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const data = new FormData(form);
+      try {
+        await fetch('/', { method: 'POST', body: data });
+        form.style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+      } catch {
+        form.querySelector('button').textContent = 'Try again';
+      }
+    });
+  }
+</script>
 
 <!-- Footer -->
 <footer>
@@ -523,10 +691,8 @@
     <ul class="footer-links">
       <li><a href="#books">Books</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="mailto:distillationpress@gmail.com">Contact</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
     <span class="footer-copy">Vancouver, BC &nbsp;·&nbsp; Independent Publishing</span>
   </div>
 </footer>
-
-</body></html>
