@@ -1,0 +1,314 @@
+<title>The Red Book — Distillation Press</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="The Red Book — published by Distillation Press.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap">
+
+<style>
+  :root {
+    --bg:        #f5f1eb;
+    --bg-alt:    #ede9e2;
+    --ink:       #1b1b1b;
+    --mid:       #6b6560;
+    --rule:      #d4cfc8;
+    --accent:    #2b5b6e;
+    --accent-lt: #d6e8ee;
+    --red:       #8b2020;
+    --red-lt:    #f0e0e0;
+    color-scheme: light;
+    --f-display: 'Cormorant Garamond', Georgia, serif;
+    --f-body:    'Jost', system-ui, sans-serif;
+    --max-w:     1080px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141414; --bg-alt: #1d1d1d; --ink: #ede9e2; --mid: #9a9590;
+      --rule: #2e2e2e; --accent: #5a9fb8; --accent-lt: #1a3340;
+      --red: #c05050; --red-lt: #2a1515;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141414; --bg-alt: #1d1d1d; --ink: #ede9e2; --mid: #9a9590;
+    --rule: #2e2e2e; --accent: #5a9fb8; --accent-lt: #1a3340;
+    --red: #c05050; --red-lt: #2a1515;
+    color-scheme: dark;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: var(--f-body); font-weight: 300;
+    font-size: 1rem; line-height: 1.65;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 0;
+  }
+  .inner { max-width: var(--max-w); margin-inline: auto; }
+
+  /* Nav */
+  nav { padding-block: 1.5rem; border-bottom: 1px solid var(--rule); }
+  .nav-inner {
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 1rem;
+    max-width: var(--max-w); margin-inline: auto;
+  }
+  .nav-logo {
+    font-family: var(--f-display); font-weight: 400;
+    font-size: clamp(1.4rem, 3vw, 1.9rem); letter-spacing: 0.04em;
+    color: var(--ink); text-decoration: none;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .nav-logo svg { width: 1.1em; height: 1.1em; flex-shrink: 0; }
+  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+  .nav-back { font-size: 0.78rem; letter-spacing: 0.06em; color: var(--mid); text-decoration: none; font-weight: 400; transition: color 0.2s; }
+  .nav-back:hover { color: var(--accent); }
+  .theme-toggle {
+    background: none; border: 1px solid var(--rule); border-radius: 2px;
+    color: var(--mid); cursor: pointer; display: flex; align-items: center;
+    justify-content: center; width: 2rem; height: 2rem; padding: 0;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+  .theme-toggle svg { width: 1rem; height: 1rem; }
+  .icon-moon { display: none; } .icon-sun { display: block; }
+  [data-theme="dark"] .icon-moon { display: block; }
+  [data-theme="dark"] .icon-sun { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .icon-moon { display: block; }
+    :root:not([data-theme="light"]) .icon-sun { display: none; }
+  }
+
+  /* Book hero */
+  .book-hero { padding-block: 5rem 4rem; border-bottom: 1px solid var(--rule); }
+  .book-hero-layout {
+    display: grid; grid-template-columns: 220px 1fr;
+    gap: 4rem; align-items: start;
+    max-width: var(--max-w); margin-inline: auto;
+  }
+  @media (max-width: 640px) {
+    .book-hero-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    .book-cover-wrap { max-width: 180px; }
+  }
+
+  .book-cover-wrap { width: 100%; }
+  .book-cover-img { width: 100%; aspect-ratio: 2 / 3; position: relative; overflow: hidden; }
+  .cover-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: flex-start; justify-content: flex-end;
+    padding: 1.4rem 1.2rem; position: relative;
+  }
+  .cover-placeholder-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, var(--red) 0%, #2a0808 100%);
+  }
+  .cover-placeholder-rule { position: absolute; top: 2rem; left: 1.2rem; right: 1.2rem; height: 1px; background: rgba(255,255,255,0.2); }
+  .cover-placeholder-title { position: relative; font-family: var(--f-display); font-weight: 400; font-size: 1.15rem; line-height: 1.2; color: #fff; margin-bottom: 0.4rem; }
+  .cover-placeholder-author { position: relative; font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); font-family: var(--f-body); }
+
+  /* Coming soon band */
+  .coming-soon-band {
+    background: var(--red-lt);
+    border: 1px solid var(--red);
+    padding: 0.5rem 1rem;
+    margin-bottom: 1.2rem;
+    display: inline-block;
+  }
+  .coming-soon-band span {
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.14em; color: var(--red);
+    text-transform: uppercase;
+  }
+
+  .book-info { display: flex; flex-direction: column; gap: 0; }
+  .book-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; }
+  .book-title-large {
+    font-family: var(--f-display); font-weight: 300;
+    font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.05;
+    color: var(--ink); margin-bottom: 1.5rem; text-wrap: balance;
+  }
+  .book-title-large em { font-style: italic; }
+  .book-description { font-size: 1rem; color: var(--mid); line-height: 1.8; max-width: 54ch; margin-bottom: 2rem; }
+  .book-description p + p { margin-top: 1em; }
+
+  .notify-form { display: flex; gap: 0.75rem; flex-wrap: wrap; max-width: 420px; margin-bottom: 1.5rem; }
+  .notify-form input[type="email"] {
+    flex: 1; min-width: 0; padding: 0.7rem 1rem;
+    border: 1px solid var(--rule); background: var(--bg);
+    color: var(--ink); font-family: var(--f-body); font-size: 0.9rem;
+    outline: none; border-radius: 2px; transition: border-color 0.2s;
+  }
+  .notify-form input[type="email"]:focus { border-color: var(--accent); }
+  .notify-form button {
+    padding: 0.7rem 1.3rem; background: var(--red); color: #fff;
+    border: none; border-radius: 2px; font-family: var(--f-body);
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em;
+    cursor: pointer; transition: opacity 0.2s; white-space: nowrap;
+  }
+  .notify-form button:hover { opacity: 0.85; }
+  .notify-success { display: none; font-size: 0.85rem; color: var(--mid); padding-top: 0.25rem; }
+
+  .book-meta-line { font-size: 0.75rem; color: var(--mid); letter-spacing: 0.04em; line-height: 1.8; }
+
+  /* Sections */
+  section { padding-block: 4rem; }
+  section + section { border-top: 1px solid var(--rule); }
+  .section-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; color: var(--accent); text-transform: uppercase; margin-bottom: 2rem; }
+
+  .excerpt-block { border-left: 2px solid var(--red); padding-left: 2rem; max-width: 60ch; }
+  .excerpt-block p { font-family: var(--f-display); font-style: italic; font-weight: 300; font-size: clamp(1.1rem, 2.2vw, 1.4rem); line-height: 1.7; color: var(--ink); }
+  .excerpt-attribution { margin-top: 1rem; font-size: 0.75rem; color: var(--mid); letter-spacing: 0.06em; }
+
+  .pull-quote { background: var(--red-lt); padding: 2rem 2.5rem; border-radius: 2px; max-width: 58ch; border-left: 2px solid var(--red); }
+  .pull-quote p { font-family: var(--f-display); font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 400; font-style: italic; color: var(--ink); line-height: 1.6; margin-bottom: 0.75rem; }
+  .pull-quote cite { font-size: 0.75rem; color: var(--mid); letter-spacing: 0.06em; font-style: normal; }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--rule); padding-block: 2.5rem; }
+  .footer-inner {
+    max-width: var(--max-w); margin-inline: auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-name { font-family: var(--f-display); font-size: 0.95rem; color: var(--ink); }
+  .footer-copy { font-size: 0.75rem; color: var(--mid); }
+
+  @media (max-width: 520px) {
+    .book-hero { padding-block: 3rem 2.5rem; }
+    section { padding-block: 3rem; }
+    .excerpt-block { padding-left: 1.25rem; }
+    .pull-quote { padding: 1.5rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; }
+  }
+</style>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <radialGradient id="gnav" cx="40%" cy="60%" r="60%">
+            <stop offset="0%" stop-color="#f0d060"/>
+            <stop offset="50%" stop-color="#c8952a"/>
+            <stop offset="100%" stop-color="#8a5e10"/>
+          </radialGradient>
+        </defs>
+        <path d="M16 2 C16 2 5 13 5 20 A11 11 0 0 0 27 20 C27 13 16 2 16 2 Z" fill="url(#gnav)"/>
+        <path d="M16 7 C16 7 10 15 10 20 A6 5 0 0 0 16 25" fill="none" stroke="rgba(255,240,180,0.4)" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      Distillation Press
+    </a>
+    <div class="nav-right">
+      <a class="nav-back" href="index.html">← All Books</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="book-hero">
+  <div class="book-hero-layout">
+    <div class="book-cover-wrap">
+      <div class="book-cover-img">
+        <!-- Replace with: <img src="images/the-red-book.jpg" alt="The Red Book cover"> -->
+        <div class="cover-placeholder">
+          <div class="cover-placeholder-bg"></div>
+          <div class="cover-placeholder-rule"></div>
+          <div class="cover-placeholder-title">The Red Book</div>
+          <div class="cover-placeholder-author">Distillation Press</div>
+        </div>
+      </div>
+    </div>
+    <div class="book-info">
+      <p class="book-eyebrow">Distillation Press — Forthcoming</p>
+      <div class="coming-soon-band"><span>Coming Soon</span></div>
+      <h1 class="book-title-large">The <em>Red</em> Book</h1>
+      <div class="book-description">
+        <p>Add your description here. What is this book? What does it ask of the reader? What has been pressed through to bring it into existence?</p>
+        <p>The Red Book is the next work from Distillation Press. More details to follow as the work completes its process.</p>
+      </div>
+      <form class="notify-form" name="notify-red-book" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="notify-red-book">
+        <input type="hidden" name="bot-field" style="display:none">
+        <input type="email" name="email" placeholder="Notify me when it arrives" required autocomplete="email">
+        <button type="submit">Notify me</button>
+      </form>
+      <p class="notify-success" id="notifySuccess">We'll let you know when it's ready.</p>
+      <div class="book-meta-line">
+        Published by Distillation Press &nbsp;·&nbsp; Vancouver, BC<br>
+        Status: In progress
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Excerpt / teaser -->
+<section>
+  <div class="inner">
+    <p class="section-label">A first look</p>
+    <div class="excerpt-block">
+      <p>Add a passage here when ready — a glimpse of the work before it arrives in full. Even a single sentence that earns its place.</p>
+      <div class="excerpt-attribution">— The Red Book, in progress</div>
+    </div>
+  </div>
+</section>
+
+<!-- Pull quote -->
+<section style="background: var(--bg-alt); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px));">
+  <div class="inner">
+    <p class="section-label">On the work</p>
+    <div class="pull-quote">
+      <p>Add a quote here — something about the work, or a line from within it that hints at what is coming.</p>
+      <cite>— Name, context</cite>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-name">Distillation Press</span>
+    <a href="index.html" style="font-size:0.75rem; color:var(--mid); text-decoration:none;">← Back to all books</a>
+    <span class="footer-copy">Vancouver, BC &nbsp;·&nbsp; Independent Publishing</span>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const stored = (() => { try { return localStorage.getItem('theme'); } catch { return null; } })();
+  if (stored) root.setAttribute('data-theme', stored);
+  toggle.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme');
+    const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = current === 'dark' || (!current && sysDark);
+    const next = isDark ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch {}
+  });
+
+  const form = document.querySelector('.notify-form');
+  if (form) {
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const data = new FormData(form);
+      try {
+        await fetch('/', { method: 'POST', body: data });
+        form.style.display = 'none';
+        document.getElementById('notifySuccess').style.display = 'block';
+      } catch {
+        form.querySelector('button').textContent = 'Try again';
+      }
+    });
+  }
+</script>
