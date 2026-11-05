@@ -1,0 +1,165 @@
+<title>You're on the list — Distillation Press</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap">
+
+<style>
+  :root {
+    --bg: #f5f1eb; --ink: #1b1b1b; --mid: #6b6560;
+    --rule: #d4cfc8; --accent: #2b5b6e;
+    --f-display: 'Cormorant Garamond', Georgia, serif;
+    --f-body: 'Jost', system-ui, sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141414; --ink: #ede9e2; --mid: #9a9590;
+      --rule: #2e2e2e; --accent: #5a9fb8;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141414; --ink: #ede9e2; --mid: #9a9590;
+    --rule: #2e2e2e; --accent: #5a9fb8;
+    color-scheme: dark;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: var(--f-body); font-weight: 300;
+    min-height: 100dvh; display: flex; flex-direction: column;
+    padding-inline: max(16px, env(safe-area-inset-left, 0px));
+  }
+  nav {
+    padding-block: 1.5rem; border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    max-width: 1080px; margin-inline: auto; width: 100%;
+  }
+  .nav-logo {
+    font-family: var(--f-display); font-weight: 400;
+    font-size: clamp(1.4rem, 3vw, 1.9rem); letter-spacing: 0.04em;
+    color: var(--ink); text-decoration: none;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .nav-logo svg { width: 1.1em; height: 1.1em; }
+  .theme-toggle {
+    background: none; border: 1px solid var(--rule); border-radius: 2px;
+    color: var(--mid); cursor: pointer; display: flex; align-items: center;
+    justify-content: center; width: 2rem; height: 2rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+  .theme-toggle svg { width: 1rem; height: 1rem; }
+  .icon-moon { display: none; } .icon-sun { display: block; }
+  [data-theme="dark"] .icon-moon { display: block; }
+  [data-theme="dark"] .icon-sun { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .icon-moon { display: block; }
+    :root:not([data-theme="light"]) .icon-sun { display: none; }
+  }
+  main {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: flex-start; justify-content: center;
+    max-width: 1080px; margin-inline: auto; width: 100%;
+    padding-block: 5rem;
+  }
+  .mark {
+    width: 2.5rem; height: 2.5rem; margin-bottom: 2rem;
+    color: var(--accent);
+  }
+  .eyebrow {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 1.5rem;
+  }
+  h1 {
+    font-family: var(--f-display); font-weight: 300;
+    font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.1;
+    color: var(--ink); margin-bottom: 1.25rem; text-wrap: balance;
+  }
+  h1 em { font-style: italic; }
+  p {
+    font-size: 1rem; color: var(--mid); line-height: 1.75;
+    max-width: 46ch; margin-bottom: 2.5rem;
+  }
+  .back-link {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
+    color: var(--accent); text-decoration: none;
+    border-bottom: 1px solid var(--accent); padding-bottom: 1px;
+    transition: opacity 0.2s;
+  }
+  .back-link:hover { opacity: 0.7; }
+  footer {
+    border-top: 1px solid var(--rule); padding-block: 2rem;
+    max-width: 1080px; margin-inline: auto; width: 100%;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-name { font-family: var(--f-display); font-size: 0.95rem; color: var(--ink); }
+  .footer-copy { font-size: 0.75rem; color: var(--mid); }
+</style>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <radialGradient id="gty" cx="40%" cy="60%" r="60%">
+          <stop offset="0%" stop-color="#f0d060"/>
+          <stop offset="50%" stop-color="#c8952a"/>
+          <stop offset="100%" stop-color="#8a5e10"/>
+        </radialGradient>
+      </defs>
+      <path d="M16 2 C16 2 5 13 5 20 A11 11 0 0 0 27 20 C27 13 16 2 16 2 Z" fill="url(#gty)"/>
+      <path d="M16 7 C16 7 10 15 10 20 A6 5 0 0 0 16 25" fill="none" stroke="rgba(255,240,180,0.4)" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+    Distillation Press
+  </a>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  </button>
+</nav>
+
+<main>
+  <svg class="mark" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <radialGradient id="gmark" cx="40%" cy="60%" r="60%">
+        <stop offset="0%" stop-color="#f0d060"/>
+        <stop offset="50%" stop-color="#c8952a"/>
+        <stop offset="100%" stop-color="#8a5e10"/>
+      </radialGradient>
+    </defs>
+    <path d="M16 2 C16 2 5 13 5 20 A11 11 0 0 0 27 20 C27 13 16 2 16 2 Z" fill="url(#gmark)"/>
+    <path d="M16 7 C16 7 10 15 10 20 A6 5 0 0 0 16 25" fill="none" stroke="rgba(255,240,180,0.4)" stroke-width="1.2" stroke-linecap="round"/>
+  </svg>
+  <p class="eyebrow">Received</p>
+  <h1>You're on the <em>list.</em></h1>
+  <p>When something new arrives — a title, an announcement, a release — you'll hear about it. Nothing else, nothing more.</p>
+  <a class="back-link" href="/">Back to Distillation Press</a>
+</main>
+
+<footer>
+  <span class="footer-name">Distillation Press</span>
+  <span class="footer-copy">Vancouver, BC &nbsp;·&nbsp; Independent Publishing</span>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const stored = (() => { try { return localStorage.getItem('theme'); } catch { return null; } })();
+  if (stored) root.setAttribute('data-theme', stored);
+  toggle.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme');
+    const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = current === 'dark' || (!current && sysDark);
+    const next = isDark ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch {}
+  });
+</script>
