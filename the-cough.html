@@ -1,9 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Cough — Distillation Press</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="The Cough — how the smallest action carries the largest ripples. Forthcoming from Distillation Press, Vancouver BC.">
 <meta property="og:title" content="The Cough — Distillation Press">
 <meta property="og:description" content="One cough. The smallest involuntary thing. A story about how nothing that changes a life announces itself.">
 <meta property="og:type" content="book">
+<meta property="og:image" content="https://distillationpress.quest/og-image.png">
 <meta property="og:url" content="https://distillationpress.quest/the-cough.html">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Cough — Distillation Press">
@@ -70,12 +75,12 @@
   }
   .nav-logo svg { width: 1.1em; height: 1.1em; flex-shrink: 0; }
   .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-  .nav-back { font-size: 0.78rem; letter-spacing: 0.06em; color: var(--mid); text-decoration: none; font-weight: 400; transition: color 0.2s; }
+  .nav-back { font-size: 0.78rem; letter-spacing: 0.06em; color: var(--mid); text-decoration: none; font-weight: 400; transition: color 0.2s; padding: 0.5rem 0.25rem; margin: -0.5rem -0.25rem; }
   .nav-back:hover { color: var(--accent); }
   .theme-toggle {
     background: none; border: 1px solid var(--rule); border-radius: 2px;
     color: var(--mid); cursor: pointer; display: flex; align-items: center;
-    justify-content: center; width: 2rem; height: 2rem; padding: 0;
+    justify-content: center; width: 2.75rem; height: 2.75rem; padding: 0;
     transition: color 0.2s, border-color 0.2s;
   }
   .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
@@ -206,7 +211,15 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; }
   }
+  @media (max-width: 520px) {
+    .notify-form { flex-direction: column; }
+    .notify-form input[type="email"], .notify-form button { width: 100%; }
+    section { padding-block: 2.5rem; }
+    .reviews-grid { grid-template-columns: 1fr; }
+  }
 </style>
+</head>
+<body>
 
 <nav>
   <div class="nav-inner">
@@ -264,7 +277,7 @@
       </div>
       <form class="notify-form" name="notify-the-cough" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html">
         <input type="hidden" name="form-name" value="notify-the-cough">
-        <input type="hidden" name="bot-field" style="display:none">
+        <input type="text" name="bot-field" style="display:none">
         <input type="email" name="email" placeholder="Notify me when it arrives" required autocomplete="email">
         <button type="submit">Notify me</button>
       </form>
@@ -350,3 +363,5 @@
     });
   }
 </script>
+</body>
+</html>
